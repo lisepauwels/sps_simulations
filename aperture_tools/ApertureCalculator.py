@@ -5,8 +5,9 @@ from abc import ABC, abstractmethod
 class ApertureElement(ABC):
     """Abstract base class for aperture elements."""
     
-    def __init__(self, element: xt.Limit):
+    def __init__(self, element, name: str):
         self.element = element
+        self.name = name
     
     @abstractmethod
     def compute_x_extent(self):
@@ -18,10 +19,9 @@ class ApertureElement(ABC):
         """Compute the y extent of the aperture."""
         pass
 
-class EllipticalAperture(ApertureElement):
+class EllipseAperture(ApertureElement):
     def __init__(self, element: xt.LimitEllipse, name: str):
-        super().__init__(element)  # Calls ApertureElement's __init__
-        self.name = name
+        super().__init__(element, name)  # Calls ApertureElement's __init__
     
     def compute_x_extent(self):
         if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
@@ -49,10 +49,9 @@ class EllipticalAperture(ApertureElement):
                 
             return -np.abs(ext) + self.element.shift_y, np.abs(ext) + self.element.shift_y
 
-class RectangularAperture(ApertureElement):
+class RectAperture(ApertureElement):
     def __init__(self, element: xt.LimitRect, name: str):
-        super().__init__(element)  # Calls ApertureElement's __init__
-        self.name = name
+        super().__init__(element, name)
     
     def compute_x_extent(self):
         if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
@@ -100,8 +99,7 @@ class RectangularAperture(ApertureElement):
 
 class RectEllipseAperture(ApertureElement):
     def __init__(self, element: xt.LimitRectEllipse, name: str):
-        super().__init__(element)
-        self.name = name
+        super().__init__(element, name)
     
     def compute_x_extent(self):
         if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
@@ -176,14 +174,13 @@ class RectEllipseAperture(ApertureElement):
             
             return -np.abs(ext) + self.element.shift_y, np.abs(ext) + self.element.shift_y
 
-class RaceTrackAperture(ApertureElement):
+class RacetrackAperture(ApertureElement):
     def __init__(self, element, name):
-        super().__init__(element)
-        self.name = name
+        super().__init__(element, name)
     
     def compute_x_extent(self):
         if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
-            rect = RectangularAperture(self.element, self.name)
+            rect = RectAperture(self.element, self.name)
             return rect.compute_x_extent()
     
         else:
@@ -202,7 +199,7 @@ class RaceTrackAperture(ApertureElement):
             
             x_exts = []
             for ellipse in ellipses:
-                el = EllipticalAperture(ellipse, self.name + '_ellipse')
+                el = EllipseAperture(ellipse, self.name + '_ellipse')
                 x_min, x_max = el.compute_x_extent()
                 x_exts.append(np.array([x_min, x_max]))
             
@@ -212,7 +209,7 @@ class RaceTrackAperture(ApertureElement):
     
     def compute_y_extent(self):
         if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
-            rect = RectangularAperture(self.element, self.name)
+            rect = RectAperture(self.element, self.name)
             return rect.compute_x_extent()
     
         else:
@@ -231,8 +228,8 @@ class RaceTrackAperture(ApertureElement):
             
             y_exts = []
             for ellipse in ellipses:
-                el = EllipticalAperture(ellipse, self.name + '_ellipse')
-                y_min, x_max = el.compute_y_extent()
+                el = EllipseAperture(ellipse, self.name + '_ellipse')
+                y_min, y_max = el.compute_y_extent()
                 y_exts.append(np.array([y_min, y_max]))
             
             y_exts = np.array(y_exts)
@@ -242,3 +239,30 @@ class RaceTrackAperture(ApertureElement):
 class ApertureCalculator:
     def __init__(self, line):
         self.line = line
+        self.aperture_line = self.compute_aperture_line()
+    
+    def compute_aperture_line(self):
+        apertures = []
+        for name in self.line.element_names:
+            element = self.line[name]
+            if isinstance(element, xt.LimitEllipse):
+                apertures.append(EllipseAperture(element, name))
+            elif isinstance(element, xt.LimitRect):
+                apertures.append(RectAperture(element, name))
+            elif isinstance(element, xt.LimitRectEllipse):
+                apertures.append(RectEllipseAperture(element, name))
+            elif isinstance(element, xt.LimitRacetrack):
+                apertures.append(RacetrackAperture(element, name))
+        return np.array(apertures)
+    
+    def compute_x_extent(self):
+        x_extents = []
+        for aperture in self.aperture_line:
+            x_extents.append(aperture.compute_x_extent())
+        return np.array(x_extents)
+    
+    def compute_y_extent(self):
+        y_extents = []
+        for aperture in self.aperture_line:
+            y_extents.append(aperture.compute_y_extent())
+        return np.array(y_extents)
