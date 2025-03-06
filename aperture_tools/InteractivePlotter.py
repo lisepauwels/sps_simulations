@@ -330,7 +330,7 @@ class InteractiveAperturePlotter:
         self.ax_aperture_y.legend()
         self.fig.canvas.draw_idle()
     
-    def plot_5sigma_off_momentum(self, exn=3.5e-6, nrj=21, pmass=0.938, bucket_height=3.4e-3):
+    def plot_5sigma_bucket_heigth(self, exn=3.5e-6, nrj=21, pmass=0.938, bucket_height=3.4e-3):
         tw = self.line.twiss()
         self.ax_aperture_x.plot(tw.s, 5*np.sqrt(tw.betx*exn*pmass/nrj)+bucket_height*tw.dx, color='darkgreen', label='5 sigma + 1 bucket D_x')
         self.ax_aperture_x.plot(tw.s, -5*np.sqrt(tw.betx*exn*pmass/nrj)-bucket_height*tw.dx, color='darkgreen')
@@ -339,7 +339,7 @@ class InteractiveAperturePlotter:
         self.ax_aperture_x.legend()
         self.ax_aperture_y.legend()
     
-    def plot_dispersion(self, exn=3.5e-6, nrj=21, pmass=0.938, bucket_height=3.4e-3):
+    def plot_phase_advance(self, exn=3.5e-6, nrj=21, pmass=0.938, bucket_height=3.4e-3):
         tw = self.line.twiss()
         coll_id = list(tw.name).index('tcsm.51932')
         self.ax_aperture_x.plot(tw.s, 0.02*np.sin(2*np.pi*((tw.mux-tw.mux[coll_id]) % 1)), color='orange', label='mux wrt collimator')
