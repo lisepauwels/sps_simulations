@@ -1,0 +1,54 @@
+{
+    "collimator": {
+        "s": [
+            5220.591600000126
+        ],
+        "name": [
+            "tcsm.51932"
+        ],
+        "length": [
+            1.83
+        ],
+        "n": [
+            22.0
+        ]
+    },
+    "aperture": {
+        "s": [
+            5223.904877178549,
+            5226.9027236515785,
+            5229.301000830002,
+            5241.492243153653,
+            5245.089658921288,
+            5245.9627545455805,
+            5249.851355555682,
+            5283.055990698735,
+            6512.258690698688
+        ],
+        "name": [
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "lsf.52005..0_aper_upstream",
+            "qf.52010..6_aper_upstream",
+            "mbb.52130_entry_aper_upstream",
+            "mba.62370_entry_aper_upstream"
+        ],
+        "n": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            1.0
+        ]
+    },
+    "machine_length": 6911.5038,
+    "interpolation": 0.1,
+    "reversed": false
+}

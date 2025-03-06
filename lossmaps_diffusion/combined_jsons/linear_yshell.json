@@ -1,0 +1,84 @@
+{
+    "collimator": {
+        "s": [
+            5220.591600000126
+        ],
+        "name": [
+            "tcsm.51932"
+        ],
+        "length": [
+            1.83
+        ],
+        "n": [
+            18.0
+        ]
+    },
+    "aperture": {
+        "s": [
+            798.3570364337996,
+            4254.394692441948,
+            5104.359790698736,
+            5223.1054514524085,
+            5224.204661825852,
+            5229.500857261537,
+            5242.991166390168,
+            5244.3901614109145,
+            5247.103300000125,
+            5254.695126873364,
+            5255.092588371953,
+            5256.379821634429,
+            5263.324367934554,
+            5322.7670271325305,
+            5406.122377325467,
+            5406.311992441902,
+            5435.51791524518,
+            5469.463503100579,
+            5469.563000000116
+        ],
+        "name": [
+            "lsd.12505_entry_aper_upstream",
+            "lsd.42505_entry_aper_upstream",
+            "mba.51570_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "mdh.52007_aper_upstream",
+            "mba.52030..1_aper_upstream",
+            "mba.52030..1_aper_upstream",
+            "mba.52030..exit_map_aper_upstream",
+            "mba.52050..exit_map_aper_upstream",
+            "mba.52250..0_aper_upstream",
+            "lsd.52505_entry_aper_upstream",
+            "lsd.52505_entry_aper_upstream",
+            "mba.52590..1_aper_upstream",
+            "lod.52702_entry_aper_upstream",
+            "lod.52702_entry_aper_upstream"
+        ],
+        "n": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ]
+    },
+    "machine_length": 6911.5038,
+    "interpolation": 0.1,
+    "reversed": false
+}
