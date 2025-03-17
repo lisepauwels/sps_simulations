@@ -1,0 +1,16 @@
+{
+ "collimator": {
+  "s": [],
+  "name": [],
+  "length": [],
+  "n": []
+ },
+ "aperture": {
+  "s": [],
+  "name": [],
+  "n": []
+ },
+ "machine_length": 6911.5038000000495,
+ "interpolation": 0.1,
+ "reversed": false
+}
