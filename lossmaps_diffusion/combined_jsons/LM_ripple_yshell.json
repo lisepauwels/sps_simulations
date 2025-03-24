@@ -1,1 +1,0 @@
-{"collimator": {"s": [], "name": [], "length": [], "n": []}, "aperture": {"s": [48.722690698609775, 240.70889069860996, 5230.699995850749], "name": ["mba.10170_entry_aper_upstream", "mba.10770_entry_aper_upstream", "loen.52002_entry_aper_upstream"], "n": [1.0, 1.0, 1.0]}, "machine_length": 6911.5038, "interpolation": 0.1, "reversed": false}
