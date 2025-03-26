@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import xtrack as xt
-import ApertureCalculator as ac
+#import ApertureCalculator as ac
+from .ApertureCalculator import ApertureCalculator
 import ipywidgets as widgets
 import mplcursors
 import matplotlib.patches as patches
@@ -14,7 +15,7 @@ class InteractiveAperturePlotter:
 
         #Aperture data
         if ap_x is None or ap_y is None:
-            self.ap_calc = ac.ApertureCalculator(line_thin)
+            self.ap_calc = ApertureCalculator(line_thin)
             self.x_ext = self.ap_calc.compute_x_extent()
             self.y_ext = self.ap_calc.compute_y_extent()
         else:

@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: apertls
+Version: 0.0.0
+Summary: A great package.
+Author-email: Lise Pauwels <lise.eliane.pauwels@cern.ch>
+Project-URL: Homepage, https://github.com/lisepauwels/sps_simulations
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
