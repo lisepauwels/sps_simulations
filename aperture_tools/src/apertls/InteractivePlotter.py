@@ -269,7 +269,7 @@ class InteractiveAperturePlotter:
                 y_value = self.y_ext[:,1][original_index] if dataset == "max" else self.y_ext[:,0][original_index]
 
                 # Annotate the closest point
-                self.ax_aperture_y.annotate(f"{self.ap_names[original_index]} ({dataset})\n(s={self.ap_pos[original_index]:.2f}, x={y_value:.2f})",
+                self.ax_aperture_y.annotate(f"{self.ap_names[original_index]} ({dataset})\n(s={self.ap_pos[original_index]:.5f}, x={y_value:.5f})",
                             xy=(self.ap_pos[original_index], y_value),
                             xytext=(self.ap_pos[original_index] + x_offset, y_value + y_offset),
                             bbox=dict(facecolor='yellow', edgecolor='black', alpha=0.7),
