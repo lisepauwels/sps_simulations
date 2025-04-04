@@ -3,7 +3,7 @@ import xtrack as xt
 import numpy as np
 
 class ManageApertures:
-    def __init__(self, line, machine, version):
+    def __init__(self, line, machine='SPS', version='EYETS 2024-2025'):
         self.line = line
         self.machine = machine
         self.version = version
