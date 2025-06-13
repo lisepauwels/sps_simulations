@@ -1,0 +1,33 @@
+{
+    "collimator": {
+        "s": [
+            5220.591600000126
+        ],
+        "name": [
+            "tcsm.51932"
+        ],
+        "length": [
+            1.83
+        ],
+        "n": [
+            2.0
+        ]
+    },
+    "aperture": {
+        "s": [
+            5226.602939004276,
+            6335.19220000008
+        ],
+        "name": [
+            "loen.52002_entry_aper_upstream",
+            "qfa.61810_aper_upstream"
+        ],
+        "n": [
+            1.0,
+            1.0
+        ]
+    },
+    "machine_length": 6911.5038,
+    "interpolation": 0.1,
+    "reversed": false
+}

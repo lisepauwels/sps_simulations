@@ -1,0 +1,78 @@
+{
+    "collimator": {
+        "s": [
+            5220.591600000126
+        ],
+        "name": [
+            "tcsm.51932"
+        ],
+        "length": [
+            1.83
+        ],
+        "n": [
+            23.0
+        ]
+    },
+    "aperture": {
+        "s": [
+            5226.203226141205,
+            5229.101144398466,
+            5230.100426556142,
+            5233.9976269710805,
+            5235.3966219918275,
+            5240.492960995976,
+            5250.888295349432,
+            5252.707819380417,
+            5255.589415245189,
+            5255.6887806198365,
+            5259.665915504358,
+            5261.851953746599,
+            5263.608914234681,
+            5263.703763001389,
+            5283.055990698735,
+            5827.026890698709,
+            6896.231090698669
+        ],
+        "name": [
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "loen.52002_entry_aper_upstream",
+            "mba.52030_entry_aper_upstream",
+            "mba.52030..1_aper_upstream",
+            "mba.52030..1_aper_upstream",
+            "mba.52030..1_aper_upstream",
+            "mba.52050..1_aper_upstream",
+            "mba.52050..1_aper_upstream",
+            "mba.52050..exit_map_aper_upstream",
+            "mba.52050..exit_map_aper_upstream",
+            "mbb.52130_entry_aper_upstream",
+            "mba.60230_entry_aper_upstream",
+            "mba.63570_entry_aper_upstream"
+        ],
+        "n": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ]
+    },
+    "machine_length": 6911.5038,
+    "interpolation": 0.1,
+    "reversed": false
+}

@@ -1,0 +1,24 @@
+{
+    "collimator": {
+        "s": [
+            5220.591600000126
+        ],
+        "name": [
+            "tcsm.51932"
+        ],
+        "length": [
+            1.83
+        ],
+        "n": [
+            1.0
+        ]
+    },
+    "aperture": {
+        "s": [],
+        "name": [],
+        "n": []
+    },
+    "machine_length": 6911.5038,
+    "interpolation": 0.1,
+    "reversed": false
+}
