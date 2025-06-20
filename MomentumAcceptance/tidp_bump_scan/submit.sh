@@ -21,7 +21,7 @@ echo $SUBMISSION_DIR
 
 line=sps_with_aperture_inj_q20_beam_sagitta2.json
 # python_script=run_off_momentum_LM.py
-python_script=rf_sweep_script.py
+python_script=rf_sweep_with_bump_script.py
 
 cp $SUBMISSION_DIR/$line .
 cp $SUBMISSION_DIR/$python_script .

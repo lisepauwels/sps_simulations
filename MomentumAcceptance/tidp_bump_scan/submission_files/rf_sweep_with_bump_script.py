@@ -30,7 +30,7 @@ line.ref['mdh.12207'].knl[0] += line.vars['bump.12207']
 #Context and parameters
 context = xo.ContextCpu()
 
-num_particles  = 10
+num_particles  = 2000
 plane = 'DPneg'
 sweep = 6000
 sweep = -abs(sweep) if plane == 'DPpos' else abs(sweep)
