@@ -1,0 +1,28 @@
+universe                = vanilla
+executable              = job.sh
+arguments               = $(Step) $(bump)
+output                  = $(ClusterId)__job$(Step).out
+error                   = $(ClusterId)__job$(Step).err
+log                     = submission.$(ClusterId).log
+output_destination      = root://eosuser.cern.ch//eos/user/l/lpauwels/sps_simulations/MomentumAcceptance/tidp_bump_scan/job_results/$(bump)/job$(Step)/
+MY.XRDCP_CREATE_DIR     = True
+transfer_input_files    = root://eosuser.cern.ch//eos/user/l/lpauwels/sps_simulations/MomentumAcceptance/tidp_bump_scan/spool/files.tar.gz
+WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
++SpoolOnEvict = False
++JobFlavour = "testmatch"
++AccountingGroup = "group_u_ATS.all"
+periodic_release = regexp("^Cannot expand", HoldReason)
+queue 500 bump from(
+    0.0
+    -10.0
+    -11.0
+    -12.0
+    -13.0
+    -14.0
+    -15.0
+    -16.0
+    -17.0
+    -18.0
+    -19.0
+    -20.0
+)
