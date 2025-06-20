@@ -1,6 +1,7 @@
 pyproject.toml
 src/apertls/ApertureCalculator.py
 src/apertls/InteractivePlotter.py
+src/apertls/ManageApertures.py
 src/apertls/__init__.py
 src/apertls.egg-info/PKG-INFO
 src/apertls.egg-info/SOURCES.txt

@@ -1,0 +1,25 @@
+{
+ "collimator": {
+  "s": [],
+  "name": [],
+  "length": [],
+  "n": []
+ },
+ "aperture": {
+  "s": [
+   523.81168,
+   524.2062
+  ],
+  "name": [
+   "mkqh.11653_aper_upstream",
+   "mkqh.11653_aper_upstream"
+  ],
+  "n": [
+   1.0,
+   1.0
+  ]
+ },
+ "machine_length": 6911.5038,
+ "interpolation": 0.1,
+ "reversed": false
+}

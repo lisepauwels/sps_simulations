@@ -1,6 +1,6 @@
 #!/bin/bash
-globalstudy=MDSimulations
-studyname=LM_betatron_with_bump
+globalstudy=MomentumAcceptance
+studyname=tidp_scan
 
 
 mkdir -p spool
@@ -16,12 +16,12 @@ do
     cp -r /afs/cern.ch/work/l/lpauwels/Xsuite/$f/$f .
 done
 
-SUBMISSION_DIR=/eos/user/l/lpauwels/Simulations/${globalstudy}/submission_files/${studyname}
+SUBMISSION_DIR=/eos/user/l/lpauwels/sps_simulations/${globalstudy}/${studyname}/submission_files
 echo $SUBMISSION_DIR
 
 line=sps_with_aperture_inj_q20_beam_sagitta2.json
 # python_script=run_off_momentum_LM.py
-python_script=${studyname}.py
+python_script=rf_sweep_script.py
 
 cp $SUBMISSION_DIR/$line .
 cp $SUBMISSION_DIR/$python_script .
@@ -42,19 +42,17 @@ if [ -L $DIR0 ]
 then
     rm -r $DIR0
 fi
-
-mkdir $DIR0
-mkdir $DIR
+# mkdir $DIR0
+mkdir -p $DIR
 ln -fns $DIR htc_logs
 
 pwd
-ls -l
-ls -L $DIR0
-ls -L htc_logs
+# ls -l
+# ls -L $DIR0
+# ls -L htc_logs
 
 cp $SUBMISSION_DIR/job.sh $DIR
 cp $SUBMISSION_DIR/submission.sub $DIR
 
 cd htc_logs
-cd ${studyname}
 condor_submit submission.sub

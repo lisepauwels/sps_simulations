@@ -1,51 +1,30 @@
 universe                = vanilla
 executable              = job.sh
-arguments               = $(Step) $(bump)
+arguments               = $(Step) $(chroma) $(plane)
 output                  = $(ClusterId)__job$(Step).out
 error                   = $(ClusterId)__job$(Step).err
 log                     = submission.$(ClusterId).log
-output_destination      = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/MDSimulations/job_results/LM_betatron_with_bump/bump_$(bump)/job$(Step)/
+output_destination      = root://eosuser.cern.ch//eos/user/l/lpauwels/sps_simulations/MomentumAcceptance/tidp_scan/job_results/$(plane)/$(chroma)/job$(Step)/
 MY.XRDCP_CREATE_DIR     = True
-transfer_input_files    = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/MDSimulations/spool/files.tar.gz
+transfer_input_files    = root://eosuser.cern.ch//eos/user/l/lpauwels/sps_simulations/MomentumAcceptance/tidp_scan/spool/files.tar.gz
 WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
 +SpoolOnEvict = False
 +JobFlavour = "testmatch"
 +AccountingGroup = "group_u_ATS.all"
 periodic_release = regexp("^Cannot expand", HoldReason)
-queue 500  bump from(
-    -5
-    -5.5
-    -6
-    -6.5
-    -7
-    -7.5
-    -8
-    -8.5
-    -9
-    -9.5
-    -10
-    -10.5
-    -11
-    -11.5
-    -12
-    -12.5
-    -13
-    -13.5
-    -14
-    -14.5
-    -15
-    -15.5
-    -16
-    -16.5
-    -17
-    -17.5
-    -18
-    -18.5
-    -19
-    -19.5
-    -20
-    -20.5
-    -21
-    -21.5
-    -22
+queue 500 chroma plane from(
+    0.4 DPpos
+    0.5 DPpos
+    0.6 DPpos
+    0.7 DPpos
+    0.8 DPpos
+    0.9 DPpos
+    1.0 DPpos
+    0.4 DPneg
+    0.5 DPneg
+    0.6 DPneg
+    0.7 DPneg
+    0.8 DPneg
+    0.9 DPneg
+    1.0 DPneg
 )

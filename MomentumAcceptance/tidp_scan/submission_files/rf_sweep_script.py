@@ -22,7 +22,7 @@ line.vars['qpv_setvalue'] = chroma
 #Context and parameters
 context = xo.ContextCpu()
 
-num_particles  = 5000
+num_particles  = 2000
 sweep = 6000
 sweep = -abs(sweep) if plane == 'DPpos' else abs(sweep)
 num_turns = 6000

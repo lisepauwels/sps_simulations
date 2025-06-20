@@ -1,0 +1,69 @@
+{
+ "collimator": {
+  "s": [
+   5220.5916
+  ],
+  "name": [
+   "tcsm.51932"
+  ],
+  "length": [
+   1.83
+  ],
+  "n": [
+   36.0
+  ]
+ },
+ "aperture": {
+  "s": [
+   5222.00477755102,
+   5222.1044130612245,
+   5222.702226122448,
+   5228.281814693877,
+   5230.7727024489795,
+   5231.370515510204,
+   5240.935524489796,
+   5244.522402857143,
+   5253.658219963682,
+   5260.023630852963,
+   5261.889361887516,
+   5283.055990698609,
+   5406.328009136012,
+   5453.482776406558
+  ],
+  "name": [
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "loen.52002_aper_upstream",
+   "mba.52030..3_aper_upstream",
+   "mba.52050..2_aper_upstream",
+   "mba.52050..4_aper_upstream",
+   "mbb.52130_den_aper_upstream",
+   "lsd.52505_aper_upstream",
+   "mba.52650..3_aper_upstream"
+  ],
+  "n": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "machine_length": 6911.5038,
+ "interpolation": 0.1,
+ "reversed": false
+}

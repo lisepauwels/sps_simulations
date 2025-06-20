@@ -1,6 +1,7 @@
 #!/bin/bash
 jobid=$1
-bump=$2
+chroma=$2
+plane=$3
 
 set --
 
@@ -27,10 +28,5 @@ tar -xzf files.tar.gz
 echo "ls after unpacking:"
 ls
 
-line=sps_with_aperture_inj_q20_beam_sagitta2.json
-
 # python3 run_off_momentum_LM.py $line
-python3 LM_betatron_with_bump.py $line $bump
-
-# cp LM_*.json $job_path/
-# cp particles_*.json $job_path/
+python3 rf_sweep_script.py $plane $chroma
