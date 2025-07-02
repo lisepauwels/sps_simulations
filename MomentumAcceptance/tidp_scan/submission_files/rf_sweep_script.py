@@ -15,6 +15,10 @@ plane = str(sys.argv[1])
 chroma = float(sys.argv[2])
 if plane not in ['DPpos', 'DPneg']:
     raise ValueError("Plane must be either 'DPpos' or 'DPneg'.")
+
+#Changing tune
+line.vars['qh_setvalue'] = line.vars['qx0']._value + 0.05
+line.vars['qv_setvalue'] = line.vars['qy0']._value + 0.05
 # Setting the chromaticity
 line.vars['qph_setvalue'] = chroma
 line.vars['qpv_setvalue'] = chroma
