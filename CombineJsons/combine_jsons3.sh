@@ -1,13 +1,17 @@
 #!/bin/bash
 
-BASE_DIR="/eos/user/l/lpauwels/sps_simulations/MomentumAcceptance/tidp_bump_scan/job_results"
-RESULTS_DIR="/eos/user/l/lpauwels/sps_simulations/MomentumAcceptance/tidp_bump_scan/studies_results"
+BASE_DIR="/eos/user/l/lpauwels/sps_simulations/archive/MomentumAcceptance/tidp_bump_scan/job_results"
+RESULTS_DIR="/eos/user/l/lpauwels/sps_simulations/archive/MomentumAcceptance/tidp_bump_scan/studies_results"
 
 
 for bump_dir in "$BASE_DIR"/*; do
     bump_mm=$(basename "$bump_dir")
+    # Only keep bump_mm values between -50.0 and -36.0
+    if ! awk "BEGIN {exit !($bump_mm >= -50.0 && $bump_mm <= -36.0)}"; then
+        continue
+    fi
     echo ${bump_mm}
-
+    
     part_files=()
 
     for job_dir in "$bump_dir"/job*; do
