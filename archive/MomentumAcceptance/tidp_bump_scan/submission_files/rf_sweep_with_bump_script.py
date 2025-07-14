@@ -45,8 +45,8 @@ for name in cavity_names:
 line['actcse.31632'].voltage = 3.5e6
 
 #Installing TIDP
-tidp_ap_tot = 147
-block_mvt = 29
+tidp_ap_tot = 147e-3
+block_mvt = 29e-3
 
 tidp = xc.EverestCollimator(length=4.3, material=xc.materials.Carbon, jaw_L= tidp_ap_tot/2 + block_mvt, jaw_R = -tidp_ap_tot/2 + block_mvt)
 line.collimators.install(names=['tidp.11434'], elements=[tidp])
