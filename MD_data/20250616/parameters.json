@@ -1,0 +1,170 @@
+{
+    "2025-06-16 11:52:00" : {
+        "radial_steering": "DPpos",
+        "'bump": 0.0,
+        "chroma": 0.5,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:05:08" : {
+        "radial_steering": "DPpos",
+        "'bump": 0.0,
+        "chroma": 0.7,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:08:38" : {
+        "radial_steering": "DPpos",
+        "'bump": 0.0,
+        "chroma": 1.0,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:14:14" : {
+        "radial_steering": "DPneg",
+        "'bump": 0.0,
+        "chroma": 0.5,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:18:26" : {
+        "radial_steering": "DPneg",
+        "'bump": 0.0,
+        "chroma": 0.7,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:21:56" : {
+        "radial_steering": "DPneg",
+        "'bump": 0.0,
+        "chroma": 1.0,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:28:56" : {
+        "radial_steering": "DPneg",
+        "'bump": 0.0,
+        "chroma": 0.4,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:35:14": {
+        "radial_steering": "DPneg",
+        "'bump": 0.005,
+        "chroma": 0.4,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 15:39:26": {
+        "radial_steering": "DPneg",
+        "'bump": 0.005,
+        "chroma": 0.5,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 16:46:51": {
+        "radial_steering": "DPneg",
+        "'bump": 0.01,
+        "chroma": 0.5,
+        "tune_shift": 0.0
+    },
+    "2025-06-16 16:54:13": {
+        "radial_steering": "DPneg",
+        "'bump": 0.01,
+        "chroma": 0.7,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 16:56:59": {
+        "radial_steering": "DPneg",
+        "'bump": 0.01,
+        "chroma": 1.0,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 17:00:39": {
+        "radial_steering": "DPneg",
+        "'bump": 0.01,
+        "chroma": 0.4,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 17:03:25": {
+        "radial_steering": "DPneg",
+        "'bump": 0.01,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 17:06:11": {
+        "radial_steering": "DPneg",
+        "'bump": 0.01,
+        "chroma": 0.6,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:03:15": {
+        "radial_steering": "DPneg",
+        "'bump": 0.0,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:04:11": {
+        "radial_steering": "DPneg",
+        "'bump": -0.01,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:05:34": {
+        "radial_steering": "DPneg",
+        "'bump": -0.011,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:06:57": {
+        "radial_steering": "DPneg",
+        "'bump": -0.012,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:09:15": {
+        "radial_steering": "DPneg",
+        "'bump": -0.013,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:10:38": {
+        "radial_steering": "DPneg",
+        "'bump": -0.014,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:12:01.1": {
+        "radial_steering": "DPneg",
+        "'bump": -0.015,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:13:23": {
+        "radial_steering": "DPneg",
+        "'bump": -0.016,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:14:46": {
+        "radial_steering": "DPneg",
+        "'bump": -0.017,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:15:41": {
+        "radial_steering": "DPneg",
+        "'bump": -0.018,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:17:32": {
+        "radial_steering": "DPneg",
+        "'bump": -0.019,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:17:59": {
+        "radial_steering": "DPneg",
+        "'bump": -0.02,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    },
+    "2025-06-16 20:19:00": {
+        "radial_steering": "DPneg",
+        "'bump": 0.0,
+        "chroma": 0.5,
+        "tune_shift": 0.05
+    }
+}
