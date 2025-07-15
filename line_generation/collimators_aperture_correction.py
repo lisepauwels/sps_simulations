@@ -1,5 +1,5 @@
 import xtrack as xt
-line = xt.Line.from_json('../../injection_lines/sps_with_aperture_inj_q20_beam_sagitta.json')
+line = xt.Line.from_json('../injection_lines/sps_with_aperture_inj_q20_beam_sagitta3.json')
 env = line.env
 
 tt = line.get_table()
@@ -23,4 +23,4 @@ line.insert([env.place('tidp.11434.a_aper', at='tidp.11434' + '@start'),
              env.place('tcsm.51932.a_aper', at='tcsm.51932'+'@start'),
              env.place('tcsm.51932.b_aper', at='tcsm.51932' +'@end')], s_tol=1e-6)
 
-line.to_json('sps_with_aperture_inj_q20_beam_sagitta2.json')
+line.to_json('../injection_lines/sps_with_aperture_inj_q20_beam_sagitta4.json')
