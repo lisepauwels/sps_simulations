@@ -5,6 +5,7 @@ import xpart as xp
 import xcoll as xc
 import xobjects as xo
 import sys
+import json
 
 start_ele = int(sys.argv[1])
 
@@ -69,5 +70,25 @@ line.scattering.enable()
 rf_sweep.track(sweep=sweep, particles=part, num_turns=num_turns, time=True, with_progress=True, ele_start=start_ele*100)
 line.scattering.disable()
 
+# Get counts
+elems, elem_counts = np.unique(part.at_element, return_counts=True)
+turns, turn_counts = np.unique(part.at_turn, return_counts=True)
+
+# Convert to JSON-serializable dict
+data = {
+    "at_element": {
+        "values": elems.tolist(),
+        "counts": elem_counts.tolist()
+    },
+    "at_turn": {
+        "values": turns.tolist(),
+        "counts": turn_counts.tolist()
+    }
+}
+
+# Save to file
+with open(f"counts_json_files/counts_start_{start_ele}.json", "w") as f:
+    json.dump(data, f, indent=2)
+
 ThisLM = xc.LossMap(line, line_is_reversed=False, part=part, interpolation=False)
-ThisLM.to_json(file=f'LM_json_files/start_{start_ele}.json')
+ThisLM.to_json(file=f'LM_json_files/LM_start_{start_ele}.json')
