@@ -66,7 +66,7 @@ rf_sweep.info(sweep=sweep, num_turns=num_turns)
 line.discard_tracker()
 line.build_tracker(_context=xo.ContextCpu(omp_num_threads='auto'))
 line.scattering.enable()
-rf_sweep.track(sweep=sweep, particles=part, num_turns=num_turns, time=True, with_progress=True, ele_start=start_ele)
+rf_sweep.track(sweep=sweep, particles=part, num_turns=num_turns, time=True, with_progress=True, ele_start=start_ele*100)
 line.scattering.disable()
 
 ThisLM = xc.LossMap(line, line_is_reversed=False, part=part, interpolation=False)
