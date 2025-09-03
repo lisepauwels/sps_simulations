@@ -59,7 +59,7 @@ py_norm = np.zeros_like(x_norm)
 zeta = np.ones_like(x_norm)*tw.particle_on_co.zeta
 delta = np.ones_like(x_norm)*tw.particle_on_co.delta
 
-part = line.build_particles(x_norm=x_norm, px_norm=px_norm, y_norm=y_norm, py_norm=py_norm, nemitt_x=3.5e-6, nemitt_y=3.5e-6, zeta=zeta, delta=delta)
+part = line.build_particles(x_norm=x_norm, px_norm=px_norm, y_norm=y_norm, py_norm=py_norm, nemitt_x=3.5e-6, nemitt_y=3.5e-6, zeta=zeta, delta=delta, at_element=start_ele*100)
 
 rf_sweep = xc.RFSweep(line)
 rf_sweep.info(sweep=sweep, num_turns=num_turns)
