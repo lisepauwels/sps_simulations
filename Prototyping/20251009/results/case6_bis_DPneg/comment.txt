@@ -1,0 +1,1 @@
+Difference is that I shifted the positive bottleneck to make more space there. It removes completely on the positive side, but creates a huge one on the negative side. Would it be like this in reality?

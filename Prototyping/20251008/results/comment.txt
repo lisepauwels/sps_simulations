@@ -1,0 +1,5 @@
+In OLD:
+
+Simulations with 3.5e-6 emittance and 2e-6 emittance give the same results
+
+Gaussian distribution compared to line distribution gives quite different results, so we go forward with that one

@@ -1,0 +1,4 @@
+line['vcak.52501.a_aper'].shift_x -= 1e-3
+line['vcak.22501.a_aper'].shift_x -= 1e-3
+line['vcak.52501.b_aper'].shift_x -= 1e-3
+line['vcak.12501.a_aper'].shift_x -= 1e-3
