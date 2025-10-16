@@ -1,0 +1,1 @@
+v3 means all initial shifts from the cases gone, to go back to the initial line
