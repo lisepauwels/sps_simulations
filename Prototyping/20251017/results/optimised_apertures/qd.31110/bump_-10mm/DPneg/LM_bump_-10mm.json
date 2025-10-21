@@ -1,0 +1,27 @@
+{
+ "xcoll": "0.6.7",
+ "date": "2025-10-17 11:26:38",
+ "collimator": {
+  "name": [],
+  "n": [],
+  "e": [],
+  "length": [],
+  "s": [],
+  "type": []
+ },
+ "aperture": {
+  "s": [
+   2654.3049000003084
+  ],
+  "n": [
+   100.0
+  ],
+  "e": [
+   2578766825190.097
+  ]
+ },
+ "machine_length": 6908.37379999983,
+ "interpolation": false,
+ "reversed": false,
+ "momentum": 25920000000.0
+}
