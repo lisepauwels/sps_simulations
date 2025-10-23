@@ -1,0 +1,94 @@
+universe                = vanilla
+executable              = job.sh
+arguments               = $(Step) $(quad) $(plane) $(bump)
+output                  = $(ClusterId)__job$(Step).out
+error                   = $(ClusterId)__job$(Step).err
+log                     = submission.$(ClusterId).log
+output_destination      = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/OffMomBumpScans/job_results/$(quad)/$(plane)/$(bump)/job$(Step)/
+MY.XRDCP_CREATE_DIR     = True
+transfer_input_files    = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/OffMomBumpScans/spool/files.tar.gz
+WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
++SpoolOnEvict = False
++JobFlavour = "testmatch"
++AccountingGroup = "group_u_ATS.all"
+periodic_release = regexp("^Cannot expand", HoldReason)
+queue 5 quad plane bump from(
+    qd.20110 DPneg -20
+    qd.20110 DPneg -18
+    qd.20110 DPneg -16
+    qd.20110 DPneg -14
+    qd.20110 DPneg -12
+    qd.20110 DPneg -10
+    qd.20110 DPneg -8
+    qd.20110 DPneg -6
+    qd.20110 DPneg -4
+    qd.20110 DPneg -2
+    qd.20110 DPneg 0
+    qd.20110 DPneg 2
+    qd.20110 DPneg 20
+    qd.20110 DPpos -20
+    qd.20110 DPpos -2
+    qd.20110 DPpos 0
+    qd.20110 DPpos 2
+    qd.20110 DPpos 4
+    qd.20110 DPpos 6
+    qd.20110 DPpos 8
+    qd.20110 DPpos 10
+    qd.20110 DPpos 12
+    qd.20110 DPpos 14
+    qd.20110 DPpos 16
+    qd.20110 DPpos 18
+    qd.20110 DPpos 20
+    qd.31110 DPneg -20
+    qd.31110 DPneg -18
+    qd.31110 DPneg -16
+    qd.31110 DPneg -14
+    qd.31110 DPneg -12
+    qd.31110 DPneg -10
+    qd.31110 DPneg -8
+    qd.31110 DPneg -6
+    qd.31110 DPneg -4
+    qd.31110 DPneg -2
+    qd.31110 DPneg 0
+    qd.31110 DPneg 2
+    qd.31110 DPneg 20
+    qd.31110 DPpos -20
+    qd.31110 DPpos -2
+    qd.31110 DPpos 0
+    qd.31110 DPpos 2
+    qd.31110 DPpos 4
+    qd.31110 DPpos 6
+    qd.31110 DPpos 8
+    qd.31110 DPpos 10
+    qd.31110 DPpos 12
+    qd.31110 DPpos 14
+    qd.31110 DPpos 16
+    qd.31110 DPpos 18
+    qd.31110 DPpos 20
+    qd.50110 DPneg -20
+    qd.50110 DPneg -18
+    qd.50110 DPneg -16
+    qd.50110 DPneg -14
+    qd.50110 DPneg -12
+    qd.50110 DPneg -10
+    qd.50110 DPneg -8
+    qd.50110 DPneg -6
+    qd.50110 DPneg -4
+    qd.50110 DPneg -2
+    qd.50110 DPneg 0
+    qd.50110 DPneg 2
+    qd.50110 DPneg 20
+    qd.50110 DPpos -20
+    qd.50110 DPpos -2
+    qd.50110 DPpos 0
+    qd.50110 DPpos 2
+    qd.50110 DPpos 4
+    qd.50110 DPpos 6
+    qd.50110 DPpos 8
+    qd.50110 DPpos 10
+    qd.50110 DPpos 12
+    qd.50110 DPpos 14
+    qd.50110 DPpos 16
+    qd.50110 DPpos 18
+    qd.50110 DPpos 20
+)
