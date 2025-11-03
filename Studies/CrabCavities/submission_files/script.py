@@ -34,7 +34,7 @@ coll_gap = float(sys.argv[3])
 
 num_particles = 10000
 plane = 'H'
-start_at_turn= 100
+start_at_turn= 500
 nemitt_x = 2e-6
 nemitt_y = 2e-6
 ramping_turns = 100
@@ -67,9 +67,10 @@ for turn in range(1,101):
 
 print(line['acfcah.61738'].crab_voltage)
 print(line['acfcah.61739'].crab_voltage)
-print('Crab cavities ramped up.')
-print('Ramping up ADT up to 0.05 in 100 turns')
+print('Crab cavities ramped up. Letting settle for 400 turns...')
+line.track(part, num_turns=400, with_progress=True)
 
+print('Ramping up ADT up to 0.05 in 100 turns')
 adt.activate()
 for turn in range(1,101):
     if turn % 10 == 0:
