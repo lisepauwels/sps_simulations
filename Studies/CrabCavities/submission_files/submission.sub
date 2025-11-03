@@ -1,0 +1,55 @@
+universe                = vanilla
+executable              = job.sh
+arguments               = $(Step) $(crab_voltage) $(lag) $(coll_gap)
+output                  = $(ClusterId)__job$(Step).out
+error                   = $(ClusterId)__job$(Step).err
+log                     = submission.$(ClusterId).log
+output_destination      = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/CrabCavities/job_results/$(crab_voltage)/$(lag)/$(coll_gap)/job$(Step)/
+MY.XRDCP_CREATE_DIR     = True
+transfer_input_files    = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/CrabCavities/spool/files.tar.gz
+WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
++SpoolOnEvict = False
++JobFlavour = "testmatch"
++AccountingGroup = "group_u_ATS.all"
+periodic_release = regexp("^Cannot expand", HoldReason)
+queue 5 crab_voltage lag coll_gap from(
+    0 0 10
+    0 0 8
+    0 0 5.7
+    1 0 10
+    1 0 8
+    1 0 5.7
+    1 90 10
+    1 90 8
+    1 90 5.7
+    1 180 10
+    1 180 8
+    1 180 5.7
+    1 270 10
+    1 270 8
+    1 270 5.7
+    2 0 10
+    2 0 8
+    2 0 5.7
+    2 90 10
+    2 90 8
+    2 90 5.7
+    2 180 10
+    2 180 8
+    2 180 5.7
+    2 270 10
+    2 270 8
+    2 270 5.7
+    3.5 0 10
+    3.5 0 8
+    3.5 0 5.7
+    3.5 90 10
+    3.5 90 8
+    3.5 90 5.7
+    3.5 180 10
+    3.5 180 8
+    3.5 180 5.7
+    3.5 270 10
+    3.5 270 8
+    3.5 270 5.7
+)
