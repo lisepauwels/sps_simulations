@@ -5,6 +5,8 @@ import xcoll as xc
 import xobjects as xo
 import json
 import sys
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 job_id = int(sys.argv[1])
 
@@ -51,20 +53,37 @@ with open('initial_conditions_uniform_ring_6d.json', 'r') as f:
     initial_conditions = json.load(f)
 
 part = line.build_particles(
-    x_norm=initial_conditions['x_norm'][job_id], px_norm=initial_conditions['px_norm'][job_id],
-    y_norm=initial_conditions['y_norm'][job_id], py_norm=initial_conditions['py_norm'][job_id],
-    zeta=initial_conditions['zeta'][job_id],
-    delta=initial_conditions['delta'][job_id],
+    x_norm=initial_conditions['x_norm'][job_id]*rescale_factors['x_norm'], px_norm=initial_conditions['px_norm'][job_id]*rescale_factors['px_norm'],
+    y_norm=initial_conditions['y_norm'][job_id]*rescale_factors['y_norm'], py_norm=initial_conditions['py_norm'][job_id]*rescale_factors['py_norm'],
+    zeta=initial_conditions['zeta'][job_id]*rescale_factors['zeta'],
+    delta=initial_conditions['delta'][job_id]*rescale_factors['delta'],
     nemitt_x=2e-6, nemitt_y=2e-6, # normalized emittances
     )
 
-line.track(part, num_turns=num_turns, time=True, with_progress=True)
+part_dict = {pid + job_id*num_particles: {'x': [part.x[part.particle_id==pid][0].copy()], 'px': [part.px[part.particle_id==pid][0].copy()],
+                                          'y': [part.y[part.particle_id==pid][0].copy()], 'py': [part.py[part.particle_id==pid][0].copy()],
+                                          'zeta' : [part.zeta[part.particle_id==pid][0].copy()], 'delta' : [part.delta[part.particle_id==pid][0].copy()],
+                                            'state': [part.state[part.particle_id==pid][0].copy()], 'at_turn': [0], 'particle_id': [pid], 'at_element': [0]} for pid in part.particle_id}
 
-dict_monitor={'x' : monitor.x.tolist(), 'y' : monitor.y.tolist(), 'px' : monitor.px.tolist(), 'py' : monitor.py.tolist(), 'zeta' : monitor.zeta.tolist(), 'delta' : monitor.delta.tolist(), 'state': monitor.state.tolist()}
-dict_part = {'x' : part.x.tolist(), 'y' : part.y.tolist(), 'px' : part.px.tolist(), 'py' : part.py.tolist(), 'zeta' : part.zeta.tolist(), 'delta' : part.delta.tolist(), 'state': part.state.tolist(), 'at_turn': part.at_turn.tolist(), 'particle_id': part.particle_id.tolist(), 'at_element': part.at_element.tolist()}
+for nn_saving in range(int(num_turns/1000)):
+    line.track(part, num_turns=1000, time=True, with_progress=True)
+    for pid in part.particle_id:
+        dict_id = job_id * num_particles + pid
+        for key in part_dict[dict_id].keys():
+            part_dict[dict_id][key].append(part.__getattribute__(key)[part.particle_id==pid][0].copy())
 
-with open(f'monitor.json', 'w') as fout:
-    json.dump(dict_monitor, fout, indent=4)
+columns = {}
+array_length = 1001  # fixed size of each array
 
-with open(f'particles.json', 'w') as fout:
-    json.dump(dict_part, fout, indent=4)
+for key in part_dict[0]:  # iterate over keys
+    # concatenate arrays for all pids for this key
+    concatenated = np.concatenate([part_dict[pid][key] for pid in part_dict])
+    # create FixedSizeListArray
+    columns[key] = pa.FixedSizeListArray.from_arrays(concatenated, array_length)
+
+# Optional: create a 'pid' column
+pid_column = pa.array(list(part_dict.keys()))
+
+# Build table
+table = pa.table({**{"pid": pid_column}, **columns})
+pq.write_table(table, "particles.parquet", compression="gzip")
