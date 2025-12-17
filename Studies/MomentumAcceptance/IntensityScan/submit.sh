@@ -1,5 +1,5 @@
 #!/bin/bash
-globalstudy=OffMomBumpScans
+globalstudy=MomentumAcceptance/IntensityScan
 # studyname=InitialBottleneckShift2
 
 
@@ -19,14 +19,15 @@ done
 SUBMISSION_DIR=/eos/user/l/lpauwels/Simulations/${globalstudy}/submission_files
 echo $SUBMISSION_DIR
 
-line=off_mom_scan_line.json
+# line=off_mom_scan_line.json
+line_dir=lines_rf_sweep_sim
 # python_script=run_off_momentum_LM.py
 python_script=script.py
 
-cp $SUBMISSION_DIR/$line .
+cp $SUBMISSION_DIR/$line_dir .
 cp $SUBMISSION_DIR/$python_script .
 
-tar -czf files.tar.gz $line $python_script xobjects xcoll xpart xtrack xdeps xfields
+tar -czf files.tar.gz $line_dir $python_script xobjects xcoll xpart xtrack xdeps xfields
 rm -r xobjects xcoll xpart xtrack xdeps xfields
 cd ..
 
