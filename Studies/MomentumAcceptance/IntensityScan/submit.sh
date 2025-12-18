@@ -24,7 +24,7 @@ line_dir=lines_rf_sweep_sim
 # python_script=run_off_momentum_LM.py
 python_script=script.py
 
-cp $SUBMISSION_DIR/$line_dir .
+cp -r $SUBMISSION_DIR/$line_dir .
 cp $SUBMISSION_DIR/$python_script .
 
 tar -czf files.tar.gz $line_dir $python_script xobjects xcoll xpart xtrack xdeps xfields
