@@ -1,0 +1,17 @@
+universe                = vanilla
+executable              = job.sh
+arguments               = $(Step) $(plane) $(nn_error) $(chroma)
+output                  = $(ClusterId)__job$(Step).out
+error                   = $(ClusterId)__job$(Step).err
+log                     = submission.$(ClusterId).log
+output_destination      = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/MomentumAcceptance/IntensityScan/job_results/$(nn_error)/$(chroma)/$(plane)/job$(Step)/
+MY.XRDCP_CREATE_DIR     = True
+transfer_input_files    = root://eosuser.cern.ch//eos/user/l/lpauwels/Simulations/MomentumAcceptance/IntensityScan/spool/files.tar.gz
+WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
++SpoolOnEvict = False
++JobFlavour = "testmatch"
++AccountingGroup = "group_u_ATS.all"
+periodic_release = regexp("^Cannot expand", HoldReason)
+queue 1 nn_error chroma plane from(
+    linear 0.5 DPpos
+)
