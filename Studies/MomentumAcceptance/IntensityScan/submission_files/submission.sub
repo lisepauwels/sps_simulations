@@ -1,6 +1,6 @@
 universe                = vanilla
 executable              = job.sh
-arguments               = $(Step) $(line) $(plane) $(nn_error) $(chroma)
+arguments               = $(Step) $(plane) $(nn_error) $(chroma)
 output                  = $(ClusterId)__job$(Step).out
 error                   = $(ClusterId)__job$(Step).err
 log                     = submission.$(ClusterId).log
@@ -12,17 +12,17 @@ WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
 +JobFlavour = "testmatch"
 +AccountingGroup = "group_u_ATS.all"
 periodic_release = regexp("^Cannot expand", HoldReason)
-queue 500 line nn_error chroma plane from(
-    sps_chroma_0.5.json linear 0.5 DPpos
-    sps_chroma_0.5.json linear 0.5 DPneg
-    sps_chroma_0.7.json linear 0.7 DPpos
-    sps_chroma_0.7.json linear 0.7 DPneg
-    sps_chroma_1.0.json linear 1.0 DPpos
-    sps_chroma_1.0.json linear 1.0 DPneg
-    sps_errors_chroma_0.5.json errors 0.5 DPpos
-    sps_errors_chroma_0.5.json errors 0.5 DPneg
-    sps_errors_chroma_0.7.json errors 0.7 DPpos
-    sps_errors_chroma_0.7.json errors 0.7 DPneg
-    sps_errors_chroma_1.0.json errors 1.0 DPpos
-    sps_errors_chroma_1.0.json errors 1.0 DPneg
+queue 500 nn_error chroma plane from(
+    linear 0.5 DPpos
+    linear 0.5 DPneg
+    linear 0.7 DPpos
+    linear 0.7 DPneg
+    linear 1.0 DPpos
+    linear 1.0 DPneg
+    errors 0.5 DPpos
+    errors 0.5 DPneg
+    errors 0.7 DPpos
+    errors 0.7 DPneg
+    errors 1.0 DPpos
+    errors 1.0 DPneg
 )

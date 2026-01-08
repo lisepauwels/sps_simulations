@@ -1,9 +1,8 @@
 #!/bin/bash
 jobid=$1
-line=$2
-plane=$3
-nn_error=$4
-chroma=$5
+plane=$2
+nn_error=$3
+chroma=$4
 
 set --
 
@@ -29,11 +28,39 @@ ls
 
 # Unpack all files that were spooled to the node
 tar -xzf files.tar.gz
+mkdir xsuite_env
+tar -xzf xsuite_env*.tar.gz -C xsuite_env
 echo "ls after unpacking:"
 ls
+source xsuite_env/bin/activate
+
+
+if [[ "$nn_error" == "linear" && "$chroma" == "0.5" ]]; then
+    line=sps_chroma_0.5.json
+
+elif [[ "$nn_error" == "linear" && "$chroma" == "0.7" ]]; then
+    line=sps_chroma_0.7.json
+
+elif [[ "$nn_error" == "linear" && "$chroma" == "1.0" ]]; then
+    line=sps_chroma_1.0.json
+
+elif [[ "$nn_error" == "errors" && "$chroma" == "0.5" ]]; then
+    line=sps_errors_chroma_0.5.json
+
+elif [[ "$nn_error" == "errors" && "$chroma" == "0.7" ]]; then
+    line=sps_errors_chroma_0.7.json
+
+elif [[ "$nn_error" == "errors" && "$chroma" == "1.0" ]]; then
+    line=sps_errors_chroma_1.0.json
+
+fi
 
 # line=off_mom_scan_line.json
-
+echo $line
+echo $plane
+ls lines_rf_sweep_sim
 python3 script.py lines_rf_sweep_sim/$line $plane
 
 echo "End: $(date)"
+
+rm -r xsuite_env lines_rf_sweep_sim script.py files.tar.gz xsuite_env*.tar.gz
