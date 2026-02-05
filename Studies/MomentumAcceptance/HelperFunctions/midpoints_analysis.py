@@ -12,20 +12,20 @@ def df_to_delta(df):
     f = 200_000_000
     return 1/slip_factor * df/f
 
-def interpolate_50_val(xvals, yvals):
-    if np.any(yvals <= 0.5):  # ensure the curve actually crosses 0.5
-        idx_above = np.where(yvals > 0.5)[0][-1]   # last index above 0.5
-        idx_below = idx_above + 1                  # first index below 0.5
+def interpolate_percentile_val(xvals, yvals, percentile=0.5):
+    if np.any(yvals <= percentile):  # ensure the curve actually crosses percentile
+        idx_above = np.where(yvals > percentile)[0][-1]   # last index above percentile
+        idx_below = idx_above + 1                  # first index below percentile
 
         # Linear interpolation for more accuracy
-        x50 = np.interp(0.5, [yvals[idx_above], yvals[idx_below]],
+        x50 = np.interp(percentile, [yvals[idx_above], yvals[idx_below]],
                             [xvals[idx_above], xvals[idx_below]])
         return x50
     else:
-        print("Warning: The curve does not cross 0.5")
+        print("Warning: The curve does not cross percentile")
         return None
 
-def get_midpoints(normalised_intensity, sim_data=True):
+def get_midpoints(normalised_intensity, percentile=0.5,sim_data=True):
     intensity_midpoints = {}
     if sim_data:
         for lt in normalised_intensity:
@@ -36,7 +36,7 @@ def get_midpoints(normalised_intensity, sim_data=True):
                     deltas = normalised_intensity[lt][c][plane]['deltas']
                     values = normalised_intensity[lt][c][plane]['values']
 
-                    x50 = interpolate_50_val(deltas, values)
+                    x50 = interpolate_percentile_val(deltas, values, percentile=percentile)
                     intensity_midpoints[lt][c][plane] = x50
     else:
         pass
