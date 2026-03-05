@@ -96,12 +96,14 @@ def plot_midpoints(midpoints, midpoints_md=None, line_types=None, planes=None, c
                 sign = -1
             else:
                 sign = 1
+            if line_type == 'linear': label = f'No errors - {plane}'
+            else: label = f'{line_type} - {plane}'
             ax.plot(chromas, 
                     [sign * midpoints[line_type][chroma][plane] for chroma in chromas],
-                    label=f'{line_type} - {plane}',
+                    label=label,
                     color=colours[line_type],
                     linestyle=line_styles[plane],
-                    marker='.')
+                    marker=markers[plane] if markers is not None else '.', markersize=5)
     if midpoints_md is not None:
         chromas_md = sorted(midpoints_md.keys())
         for chroma in chromas_md:
@@ -117,15 +119,15 @@ def plot_midpoints(midpoints, midpoints_md=None, line_types=None, planes=None, c
                            label=f'MD - {plane}' if chroma == chromas_md[0] else None,
                            color=colours['MD'],
                            marker=markers[plane],
-                           s=10,
+                           s=12,
                            zorder=5)
     if ylim is not None:
         ax.set_ylim(ylim)
-    ax.set_xlabel(r"$Q_{x, norm}^'$")
-    ax.set_ylabel(r"$\delta$  (with $-\delta_-$ plotted positive)")
+    ax.set_xlabel(r"Normalised Chromaticity $\xi$", fontsize=12)
+    ax.set_ylabel(r"$|\delta|$", fontsize=12)
     ax.grid()
-    ax.legend(ncols=2 if len(planes) > 1 else 1)
-    ax.set_title(f"Midpoints vs Chromaticity -- {planes[0] if len(planes) == 1 else 'Both Planes'}")
+    ax.legend(ncols=2 if len(planes) > 1 else 1, fontsize=12, frameon=True)
+    ax.set_title(f"Midpoints vs Chromaticity -- {planes[0] if len(planes) == 1 else 'Both Planes'}", fontsize=14)
     plt.tight_layout()
     plt.show()
 

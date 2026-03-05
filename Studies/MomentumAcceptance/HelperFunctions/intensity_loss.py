@@ -47,7 +47,7 @@ def plot_intensity_drop(normalised_intensity, line_types=None, chromas=None, lin
                 )
     
     line_handles = [
-        Line2D([0], [0], color='black', linestyle=line_styles[lt], linewidth=2, label=lt)
+        Line2D([0], [0], color='black', linestyle=line_styles[lt], linewidth=2, label=lt if lt != 'linear' else 'No errors')
         for lt in line_styles
     ]
     legend_model = ax.legend(handles=line_handles, title="Model", loc="upper left", frameon=True)
@@ -56,10 +56,10 @@ def plot_intensity_drop(normalised_intensity, line_types=None, chromas=None, lin
     sm = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
     sm.set_array([])  # required by older mpl for colorbar
     cbar = fig.colorbar(sm, ax=ax, pad=0.02)
-    cbar.set_label("Chromaticity  $Q'_x$")
+    cbar.set_label(r"Normalised Chromaticity  $\xi_x$", fontsize=12)
 
-    ax.set_xlabel(r"$\delta$")
-    ax.set_ylabel('Normalised Intensity Loss')
+    ax.set_xlabel(r"$\delta$", fontsize=12)
+    ax.set_ylabel('Normalised Intensity Loss', fontsize=12)
     ax.grid()
     fig.tight_layout()
 

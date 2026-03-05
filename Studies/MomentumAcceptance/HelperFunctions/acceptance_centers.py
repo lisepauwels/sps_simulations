@@ -173,12 +173,13 @@ def plot_centers(
 
     for lt in line_types:
         x, y = _centers_vs_chroma_for_line(intensity_midpoints, lt, chromas=chromas)
+        label = str(lt) if lt != "linear" else "No errors"
         ax.plot(
             x, y,
             color=colours.get(lt, None),
             marker=markers.get(lt, "o"),
             linestyle="-",
-            label=str(lt),
+            label=label,
             zorder=3,
         )
 
@@ -220,9 +221,9 @@ def plot_centers(
         )
 
     ax.grid(alpha=0.3)
-    ax.set_xlabel(r"Chromaticity $Q'_x$")
-    ax.set_ylabel(r"Center $C = (\delta_+ + \delta_-)/2$")
-    ax.legend(title="Model", fontsize=9)
+    ax.set_xlabel(r"Normalised Chromaticity $\xi_x$")
+    ax.set_ylabel(r"Centre $C = \frac{\delta_+ + \delta_-}{2}$")
+    ax.legend(title="Model", fontsize=12)
     fig.tight_layout()
 
     if savefig is not None:
@@ -267,12 +268,13 @@ def plot_acceptance(
     # ---- Simulation/model curves ----
     for lt in line_types:
         x, y = _acceptance_vs_chroma_for_line(intensity_midpoints, lt, chromas=chromas)
+        label = str(lt) if lt != "linear" else "No errors"
         ax.plot(
             x, y,
             color=colours.get(lt, None),
             marker=markers.get(lt, "o"),
             linestyle="-",
-            label=str(lt),
+            label=label,
             zorder=3,
         )
 
@@ -315,9 +317,9 @@ def plot_acceptance(
         )
 
     ax.grid(alpha=0.3)
-    ax.set_xlabel(r"Chromaticity $Q'_x$")
+    ax.set_xlabel(r"Normalised Chromaticity $\xi_x$")
     ax.set_ylabel(r"Acceptance $A = \delta_+ - \delta_-$")
-    ax.legend(title="Model", fontsize=9)
+    ax.legend(title="Model", fontsize=12)
     fig.tight_layout()
 
     if savefig is not None:
