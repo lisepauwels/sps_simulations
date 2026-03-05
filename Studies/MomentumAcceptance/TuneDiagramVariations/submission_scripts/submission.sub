@@ -1,0 +1,25 @@
+# NAME, PATH, and ENV_LIST should be passed via CLI
+# Expect ENV_LIST to be either empty or something like: "geant4" or "fluka geant4"
+# and PYARGS to be "scripts/... data/... colldb H" etc (from jobs.list)
+
+universe   = vanilla
+executable = job.sh
+if defined ENV_LIST
+  arguments = -p $(ClusterId).$(Process) -n $(NAME) -e $(ENV_LIST) -c python $(Pyargs)
+else
+  arguments = -p $(ClusterId).$(Process) -n $(NAME) -c python $(Pyargs)
+endif
+output     = $(ClusterId)__job$(Process).out
+error      = $(ClusterId)__job$(Process).err
+log        = submission.$(NAME).$(ClusterId).log
+output_destination      = root://eosuser.cern.ch/$(PATH)/studies/$(NAME)/$(Case)/job_$(Step)
+MY.XRDCP_CREATE_DIR     = True
+transfer_input_files    = root://eosuser.cern.ch/$(PATH)/spool/files_$(NAME).tar.gz
+WHEN_TO_TRANSFER_OUTPUT = ON_EXIT_OR_EVICT
++SpoolOnEvict = False
++JobFlavour = "testmatch"
++AccountingGroup = "group_u_ATS.all"
+max_materialize = 10000
+periodic_release = regexp("^Cannot expand", HoldReason)
+# Read case + step + remainder-of-line as pyargs from an auto-generated file listing all jobs
+queue case, step, pyargs from jobs.list
