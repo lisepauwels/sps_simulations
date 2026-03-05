@@ -1,0 +1,38 @@
+{
+ "xcoll": [
+  "0.9.1"
+ ],
+ "date": [
+  "2026-02-11 16:14:13"
+ ],
+ "momentum": 25920000000.0,
+ "beam_type": 2212,
+ "num_initial": 1000,
+ "tot_energy_initial": 51840000000000.0,
+ "cold_regions": null,
+ "warm_regions": null,
+ "s_range": {},
+ "collimator": {
+  "name": [],
+  "n": [],
+  "e": [],
+  "length": [],
+  "s": [],
+  "type": []
+ },
+ "aperture": {
+  "name": ["vcak.21101.a_aper",
+    "vtto.31105.a_aper",
+    "vcak.41101.a_aper",
+    "vcak.51101.a_aper",
+    "vcak.61101.a_aper"],
+  "n": [560, 22, 16, 1, 398],
+  "e": [1,1,1,1,1],
+  "length": [0.1, 0.1, 0.1, 0.1, 0.1],
+  "s": [1501.1956, 2653.1129, 3802.4503, 4954.3676, 6106.2849],
+  "type": ["Unknown", "Unknown", "Unknown", "Unknown", "Unknown"]
+ },
+ "machine_length": 6908.37379999983,
+ "interpolation": false,
+ "reversed": null
+}
