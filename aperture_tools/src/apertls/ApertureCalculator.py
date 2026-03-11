@@ -24,26 +24,36 @@ class EllipseAperture(ApertureElement):
         super().__init__(element, name)  # Calls ApertureElement's __init__
     
     def compute_x_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        # if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        #     return -self.element.a + self.element.shift_x, self.element.a + self.element.shift_x
+        #  else:
+        #     t_max = np.arctan(-self.element.b/self.element.a * self.element._sin_rot_s/self.element._cos_rot_s)
+        #     ext = self.element.a*np.cos(t_max)*self.element._cos_rot_s-self.element.b*np.sin(t_max)*self.element._sin_rot_s
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             return -self.element.a + self.element.shift_x, self.element.a + self.element.shift_x
         
         else:
-            t_max = np.arctan(-self.element.b/self.element.a * self.element._sin_rot_s/self.element._cos_rot_s)
-            ext = self.element.a*np.cos(t_max)*self.element._cos_rot_s-self.element.b*np.sin(t_max)*self.element._sin_rot_s
+            t_max = np.arctan(-self.element.b/self.element.a * np.sin(self.element.rot_s_rad)/np.cos(self.element.rot_s_rad))
+            ext = self.element.a*np.cos(t_max)*np.cos(self.element.rot_s_rad)-self.element.b*np.sin(t_max)*np.sin(self.element.rot_s_rad)
             
             if ext < 0: 
                 print('ERROR: ellipse extent is negatif')
                 
-            return -np.abs(ext) + self.shift_x, np.abs(ext) + self.shift_x
+            return -np.abs(ext) + self.element.shift_x, np.abs(ext) + self.element.shift_x
         
     def compute_y_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        # if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        #     return -self.element.b + self.element.shift_y, self.element.b + self.element.shift_y
+        
+        # else:
+        #     t_max = np.arctan(self.element.b/self.element.a * self.element._cos_rot_s/self.element._sin_rot_s)
+        #     ext = self.element.a*np.cos(t_max)*self.element._sin_rot_s + self.element.b*np.sin(t_max)*self.element._cos_rot_s
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             return -self.element.b + self.element.shift_y, self.element.b + self.element.shift_y
         
         else:
-            t_max = np.arctan(self.element.b/self.element.a * self.element._cos_rot_s/self.element._sin_rot_s)
-            ext = self.element.a*np.cos(t_max)*self.element._sin_rot_s + self.element.b*np.sin(t_max)*self.element._cos_rot_s
-            
+            t_max = np.arctan(self.element.b/self.element.a * np.cos(self.element.rot_s_rad)/np.sin(self.element.rot_s_rad))
+            ext = self.element.a*np.cos(t_max)*np.sin(self.element.rot_s_rad) + self.element.b*np.sin(t_max)*np.cos(self.element.rot_s_rad)
             if ext < 0: 
                 print('ERROR: ellipse extent is negatif')
                 
@@ -54,7 +64,7 @@ class RectAperture(ApertureElement):
         super().__init__(element, name)
     
     def compute_x_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             return self.element.min_x+ self.element.shift_x, self.element.max_x + self.element.shift_x
         else:
             w, h = self.element.max_x-self.element.min_x, self.element.max_y-self.element.min_y
@@ -64,8 +74,8 @@ class RectAperture(ApertureElement):
                                 [-w/2, h/2]])
             
             rotation_matrix = np.array([
-                [self.element._cos_rot_s, -self.element._sin_rot_s],
-                [self.element._sin_rot_s,  self.element._cos_rot_s]
+                [np.cos(self.element.rot_s_rad), -np.sin(self.element.rot_s_rad)],
+                [np.sin(self.element.rot_s_rad),  np.cos(self.element.rot_s_rad)]
             ])
             
             rotated_corners = corners @ rotation_matrix.T
@@ -76,7 +86,7 @@ class RectAperture(ApertureElement):
             return min_x_val + self.element.shift_x, max_x_val + self.element.shift_x
     
     def compute_y_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             return self.element.min_y+ self.element.shift_y, self.element.max_y + self.element.shift_y
         else:
             w, h = self.element.max_x-self.element.min_x, self.element.max_y-self.element.min_y
@@ -86,8 +96,8 @@ class RectAperture(ApertureElement):
                                 [-w/2, h/2]])
             
             rotation_matrix = np.array([
-                [self.element._cos_rot_s, -self.element._sin_rot_s],
-                [self.element._sin_rot_s,  self.element._cos_rot_s]
+                [np.cos(self.element.rot_s_rad), -np.sin(self.element.rot_s_rad)],
+                [np.sin(self.element.rot_s_rad),  np.cos(self.element.rot_s_rad)]
             ])
             
             rotated_corners = corners @ rotation_matrix.T
@@ -102,7 +112,7 @@ class RectEllipseAperture(ApertureElement):
         super().__init__(element, name)
     
     def compute_x_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             ext = np.min([self.element.a, self.element.max_x])
             
             if ext < 0: 
@@ -112,8 +122,8 @@ class RectEllipseAperture(ApertureElement):
         
         else:
             #ellipse part
-            t_max = np.arctan(-self.element.b/self.element.a * self.element._sin_rot_s/self.element._cos_rot_s)
-            ext_ellipse = np.abs(self.element.a*np.cos(t_max)*self.element._cos_rot_s-self.element.b*np.sin(t_max)*self.element._sin_rot_s)
+            t_max = np.arctan(-self.element.b/self.element.a * np.sin(self.element.rot_s_rad)/np.cos(self.element.rot_s_rad))
+            ext_ellipse = np.abs(self.element.a*np.cos(t_max)*np.cos(self.element.rot_s_rad)-self.element.b*np.sin(t_max)*np.sin(self.element.rot_s_rad))
             
             #rectangle part
             corners = np.array([[-self.element.max_x, -self.element.max_y],
@@ -122,8 +132,8 @@ class RectEllipseAperture(ApertureElement):
                                 [-self.element.max_x, self.element.max_y]])
         
             rotation_matrix = np.array([
-                [self.element._cos_rot_s, -self.element._sin_rot_s],
-                [self.element._sin_rot_s,  self.element._cos_rot_s]
+                [np.cos(self.element.rot_s_rad), -np.sin(self.element.rot_s_rad)],
+                [np.sin(self.element.rot_s_rad),  np.cos(self.element.rot_s_rad)]
             ])
             
             rotated_corners = corners @ rotation_matrix.T
@@ -138,7 +148,7 @@ class RectEllipseAperture(ApertureElement):
             return -np.abs(ext) + self.element.shift_x, np.abs(ext) + self.element.shift_x
         
     def compute_y_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             ext = np.min([self.element.b, self.element.max_y])
             
             if ext < 0: 
@@ -148,8 +158,8 @@ class RectEllipseAperture(ApertureElement):
         
         else:
             #ellipse part
-            t_max = np.arctan(self.element.b/self.element.a * self.element._cos_rot_s/self.element._sin_rot_s)
-            ext_ellipse = self.element.a*np.cos(t_max)*self.element._sin_rot_s + self.element.b*np.sin(t_max)*self.element._cos_rot_s
+            t_max = np.arctan(self.element.b/self.element.a * np.cos(self.element.rot_s_rad)/np.sin(self.element.rot_s_rad))
+            ext_ellipse = self.element.a*np.cos(t_max)*np.sin(self.element.rot_s_rad) + self.element.b*np.sin(t_max)*np.cos(self.element.rot_s_rad)
             
             #rectangle part
             corners = np.array([[-self.element.max_x, -self.element.max_y],
@@ -158,8 +168,8 @@ class RectEllipseAperture(ApertureElement):
                                 [-self.element.max_x, self.element.max_y]])
             
             rotation_matrix = np.array([
-                [self.element._cos_rot_s, -self.element._sin_rot_s],
-                [self.element._sin_rot_s,  self.element._cos_rot_s]
+                [np.cos(self.element.rot_s_rad), -np.sin(self.element.rot_s_rad)],
+                [np.sin(self.element.rot_s_rad),  np.cos(self.element.rot_s_rad)]
             ])
             
             rotated_corners = corners @ rotation_matrix.T
@@ -179,14 +189,14 @@ class RacetrackAperture(ApertureElement):
         super().__init__(element, name)
     
     def compute_x_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             rect = RectAperture(self.element, self.name)
             return rect.compute_x_extent()
     
         else:
             rotation_matrix = np.array([
-                    [self.element._cos_rot_s, -self.element._sin_rot_s],
-                    [self.element._sin_rot_s,  self.element._cos_rot_s]
+                    [np.cos(self.element.rot_s_rad), -np.sin(self.element.rot_s_rad)],
+                    [np.sin(self.element.rot_s_rad),  np.cos(self.element.rot_s_rad)]
                 ])
             
             ellipse_centers = np.array([[self.element.min_x+self.element.a, self.element.min_y+self.element.b],
@@ -195,7 +205,7 @@ class RacetrackAperture(ApertureElement):
                                         [self.element.min_x + self.element.a, self.element.max_y - self.element.b]])
             
             ellipse_centers_rot = ellipse_centers @ rotation_matrix.T
-            ellipses = np.array([xt.LimitEllipse(a= self.element.a, b=self.element.b, shift_x = self.elementlipse_centers_rot[i,0], shift_y = self.elementlipse_centers_rot[i,1], _cos_rot_s = self.element._cos_rot_s, _sin_rot_s = self.element._sin_rot_s) for i in range(4)])
+            ellipses = np.array([xt.LimitEllipse(a= self.element.a, b=self.element.b, shift_x = self.elementlipse_centers_rot[i,0], shift_y = self.elementlipse_centers_rot[i,1], _cos_rot_s = np.cos(self.element.rot_s_rad), _sin_rot_s = np.sin(self.element.rot_s_rad)) for i in range(4)])
             
             x_exts = []
             for ellipse in ellipses:
@@ -208,14 +218,14 @@ class RacetrackAperture(ApertureElement):
             return np.min(x_exts[:,0]) + self.element.shift_x, np.max(x_exts[:,1]) + self.element.shift_x
     
     def compute_y_extent(self):
-        if (np.abs(self.element._cos_rot_s) > 1 and np.abs(self.element._sin_rot_s) > 1) or (np.abs(self.element._sin_rot_s) < 0.00001):
+        if (np.abs(np.cos(self.element.rot_s_rad)) > 1 and np.abs(np.sin(self.element.rot_s_rad)) > 1) or (np.abs(np.sin(self.element.rot_s_rad)) < 0.00001):
             rect = RectAperture(self.element, self.name)
             return rect.compute_x_extent()
     
         else:
             rotation_matrix = np.array([
-                    [self.element._cos_rot_s, -self.element._sin_rot_s],
-                    [self.element._sin_rot_s,  self.element._cos_rot_s]
+                    [np.cos(self.element.rot_s_rad), -np.sin(self.element.rot_s_rad)],
+                    [np.sin(self.element.rot_s_rad),  np.cos(self.element.rot_s_rad)]
                 ])
             
             ellipse_centers = np.array([[self.element.min_x+self.element.a, self.element.min_y+self.element.b],
@@ -224,7 +234,7 @@ class RacetrackAperture(ApertureElement):
                                         [self.element.min_x + self.element.a, self.element.max_y - self.element.b]])
             
             ellipse_centers_rot = ellipse_centers @ rotation_matrix.T
-            ellipses = np.array([xt.LimitEllipse(a= self.element.a, b=self.element.b, shift_x = self.elementlipse_centers_rot[i,0], shift_y = self.elementlipse_centers_rot[i,1], _cos_rot_s = self.element._cos_rot_s, _sin_rot_s = self.element._sin_rot_s) for i in range(4)])
+            ellipses = np.array([xt.LimitEllipse(a= self.element.a, b=self.element.b, shift_x = self.elementlipse_centers_rot[i,0], shift_y = self.elementlipse_centers_rot[i,1], _cos_rot_s = np.cos(self.element.rot_s_rad), _sin_rot_s = np.sin(self.element.rot_s_rad)) for i in range(4)])
             
             y_exts = []
             for ellipse in ellipses:
