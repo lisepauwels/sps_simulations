@@ -137,6 +137,7 @@ def plot_midpoints_comparison(
     -------
     fig, ax
     """
+    
     # ── resolve locations ────────────────────────────────────────────────────
     all_dicts = [d for d in (sim_midpoints, md_midpoints) if d is not None]
     if locations is None:
@@ -185,7 +186,7 @@ def plot_midpoints_comparison(
     ax.grid(visible=True, which='minor', color='#999999', linestyle='-', alpha=0.2)
     ax.grid(visible=True, which='major', color='#666666', linestyle='-', alpha=0.5)
     ax.set_xlabel("Bump [mm]")
-    ax.set_ylabel(r"$\delta\; [10^{-3}]$")
+    ax.set_ylabel(r"$|\delta|\; [10^{-3}]$")
     ax.set_title("Off-momentum shift needed to scrape 50% intensity")
     if legend:
         handles, labels = ax.get_legend_handles_labels()
